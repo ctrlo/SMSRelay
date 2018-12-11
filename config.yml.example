@@ -1,0 +1,16 @@
+appname: "SMSRelay"
+charset: "UTF-8"
+
+log: "warning"
+logger: "console"
+warnings: 0
+show_errors: 1
+no_server_tokens: 1
+
+smsrelay:
+    submit_username: +44123456789
+    submit_password: XXXX
+    relay_to: # See https://support.aa.net.uk/SMS_API
+        - 3240592378405982346
+        - 4569804569829342235
+        - +44123456789

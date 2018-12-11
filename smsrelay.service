@@ -1,0 +1,17 @@
+# Copy into /etc/systemd/system/smsrelay.service
+# Enable with systemctl enable smsrelay.service
+
+[Unit]
+Description=SMS relay for Andrews & Arnolds SMS messages
+
+[Service]
+ExecStart=/usr/bin/plackup /usr/local/SMSRelay/bin/app.psgi
+Restart=on-abort
+Type=simple
+
+User=smsrelay
+Group=smsrelay
+
+[Install]
+WantedBy=multi-user.target
+
