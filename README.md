@@ -17,4 +17,5 @@ install), it was the quickest way for me to write it.
 * Copy ```smsrelay.service``` to ```/etc/systemd/system/smsrelay.service```
 * ```systemctl enable smsrelay.service```
 * ```systemctl start smsrelay.service```
+* In the control panel settings for the particular number, set the inbound SMS destination to be ```http://you.example.com:5000/inbound```
 
