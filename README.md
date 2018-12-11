@@ -6,6 +6,10 @@ destination to multiple destinations.
 It is primarily designed for routing inbound messages to a number within an
 Andrews & Arnold's account to multiple SIMs.
 
+It is a Perl script requiring the Dancer2 web framework. Whilst this is
+overkill for the required task (and probably makes it more difficult to
+install), it was the quickest way for me to write it.
+
 ## Installation
 
 * Install files to ```/usr/local/SMSRelay```
