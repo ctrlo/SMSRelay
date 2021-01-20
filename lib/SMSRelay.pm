@@ -24,12 +24,30 @@ post '/inbound' => sub {
         oa       => param('oa'),
     );
 
-    foreach my $dest (@{$conf->{relay_to}})
+
+    if (my $kid = fork)
     {
-        $form{da} = $dest;
-        my $response = $ua->post($url, \%form);
-        debug $response->as_string;
+        # will fire off a worker and then abandon it, thus making reaping
+        # the long running process (the grndkid) init's (pid1) problem
+        waitpid($kid, 0); # wait for child to start grandchild and clean up
     }
+    else {
+        if (my $grandkid = fork) {
+            POSIX::_exit(0); # the child dies here
+        }
+        else {
+            foreach my $dest (@{$conf->{relay_to}})
+            {
+                # Send the messages to each destination
+                $form{da} = $dest;
+                my $response = $ua->post($url, \%form);
+                debug $response->as_string;
+            }
+        }
+    }
+
+    return 1;
+
 };
 
 true;
