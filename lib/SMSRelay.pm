@@ -43,6 +43,7 @@ post '/inbound' => sub {
                 my $response = $ua->post($url, \%form);
                 debug $response->as_string;
             }
+            POSIX::_exit(0);
         }
     }
 
